@@ -982,6 +982,7 @@ display:none;
 
 .paypal {
     float: right;
+display:none;
 }
 
 
@@ -1949,7 +1950,7 @@ h2.screen-reader-text{
 }
 
 .post-navigation a, .posts-navigation a {
-    border: 2px solid;
+    border: 2px solid rgba(141, 222, 92, 0.56);
     padding: 6px 20px;
     background: #fff;
     display: block;
