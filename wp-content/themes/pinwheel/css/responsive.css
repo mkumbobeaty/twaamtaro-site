@@ -1,0 +1,268 @@
+
+
+
+@media (max-width: 991px) {
+.mb-50 {
+    margin-bottom: 20px;
+}
+.section-padding {
+    padding: 30px 0;
+}
+  
+}
+
+/* ******** ends max width 991*******/
+
+@media (max-width: 767px) {
+ .text-center-xs {
+ 	text-align: center;
+ } 
+.row-instagram {
+    margin: 0 -4px;
+}
+.row-instagram li {
+    padding: 0 4px;
+}
+ .top-header,
+ .main-header {
+    padding: 12px 0;
+}
+.currency,
+.shipping-section,
+.order-section {
+    text-align: center;
+}
+.cart-section {
+    padding: 0 20px 5px;
+    text-align: center;
+}
+.header-fixed {
+    position: static;
+
+}
+.header-fixed.nav-up {
+    transform: translateY(0);
+}
+.cart-section .dropdown-menu {
+	left: 0;
+	min-width: 200px;
+	right: auto;
+	top: 171%;
+}
+.cart-section .dropdown-menu::before {
+	left: 5px;
+	right: auto;
+	top: -15px;
+}
+
+.header-btm {
+    padding-top: 0;
+}
+
+.banner-section .carousel-inner img {
+    height: 450px;
+    object-fit: cover;
+}
+.col-pad-10 {
+    padding: 0 15px;
+}
+.collection-item {
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.save-content-inner > h2 {
+    font-size: 50px;
+    line-height: 55px;
+    margin-bottom: 10px;
+}
+.save-content-inner h3 {
+    margin-bottom: 10px;
+}
+.save-content-inner em {
+    font-size: 30px;
+    line-height: 36px;
+}
+.news-caption {
+	margin-bottom: 20px;
+}
+
+.news-caption h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.instagram-section {
+	padding-top: 0;
+}
+.subscribe-form .form-inline .form-control {
+	margin-right: 0;
+	width: 100%;
+}
+.subscribe-form .btn {
+    margin-bottom: 16px;
+}
+.subscribe-form label {
+    margin-bottom: 15px;
+}
+
+.footer-info {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.footer-info:last-child {
+	margin-bottom: 0;
+}
+.footer-btm {
+    border-top: medium none;
+    padding: 0 0 20px;
+}
+.copyright {
+    margin-bottom: 10px;
+    text-align: center;
+}
+.footer-top.section-padding {
+    padding-bottom: 15px;
+}  
+.search-form .form-group {
+    margin-bottom: 15px;
+}
+
+}
+
+/* ******** ends max width 767*******/
+
+@media (max-width: 414px) {
+	.subscribe-form .btn {
+		width: 100%;
+	}
+	.social-media li a {
+	    height: 40px;
+	    line-height: 40px;
+	    width: 40px;
+	}
+}
+/********* ends @media (max-width: 414) *******/
+
+
+@media (max-width: 480px) {
+.carousel-caption h2 {
+    font-size: 30px;
+    line-height: 36px;
+}
+.save-content {
+    height: 350px;
+
+}
+  
+}
+/********* ends max width 480*******/
+
+@media (min-width: 481px) and (max-width: 767px) {
+.save-content {
+    height: 500px;
+}
+.carousel-caption h2 {
+    font-size: 45px;
+    line-height: 50px;
+}
+}
+/********* ends (min-width: 481px) and (max-width: 767px) *******/
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+.collection-item h3 {
+    font-size: 18px;
+}
+.popular-products .mb-50 {
+    margin-bottom: 0;
+}
+.social-media {
+    margin: 20px 0 0;
+}
+}
+
+/********* ends (min-width: 768px) and (max-width: 991px)*******/
+
+@media (min-width: 992px) and (max-width: 1024px) {
+.subscribe-form .form-inline .form-control {
+    
+    width: auto;
+}
+}
+@media (min-width: 992px) {
+.text-right-md {
+	text-align: right;
+}
+.text-center-md {
+	text-align: center;
+}
+}
+
+
+@media (min-width: 768px){
+.text-right-sm {
+	text-align: right;
+}
+.text-center-sm {
+	text-align: center;
+}
+
+.rt-btn{
+    text-align: right;
+}
+.inner-cmt {
+    padding-left: 100px;
+}
+}
+
+@media (min-width: 1300px){
+.container-fluid {
+    padding: 0 20px;
+}
+.no-padding {
+    padding: 0;
+}
+.cart-section-lst table th,
+.cart-section-lst table td {
+    text-align: left;
+}
+
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+.top-header,
+.main-header {
+    padding: 12px 0;
+}
+
+.carousel-caption {
+    bottom: 30px;
+    padding-bottom: 20px;
+}
+.carousel-caption h2 {
+    font-size: 45px;
+    line-height: 50px;
+}
+.save-content {
+	height: 450px;
+}
+.save-content-inner > h2 {
+    font-size: 80px;
+    line-height: 80px;
+    margin-bottom: 10px;
+}
+.save-content-inner em {
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.save-content-inner h3 {
+	margin-bottom: 10px;
+}
+}
+
+/********* ends (min-width: 992px) and (max-width: 1024px)*******/
