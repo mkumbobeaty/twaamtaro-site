@@ -2621,13 +2621,8 @@ section.no-results.not-found {
 .site-branding {
     text-align: center;
 }
-
-/*.intro-banner {
-    background: url("images/header-banner.jpg")no-repeat center fixed;
-    background-size: cover;
-    height: 250px;
-    text-align: center;
-}*/
+.intro-banner {
+   }
 .intro-banner h2 {
     color: #ffffff;
     margin-top: 115px;
