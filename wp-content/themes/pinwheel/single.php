@@ -10,7 +10,7 @@
 get_header();?>
 
 
-<div class="intro-banner2">
+<div class="intro-banner3">
 	<div class="container">
 		<h2>
 			<?php single_post_title(); ?>

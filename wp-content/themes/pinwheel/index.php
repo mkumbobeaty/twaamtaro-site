@@ -15,7 +15,7 @@
 
 get_header(); ?>
 
-<div class="intro-banner">
+<div class="intro-banner3">
 	<div class="container">
 		<h2>
 			

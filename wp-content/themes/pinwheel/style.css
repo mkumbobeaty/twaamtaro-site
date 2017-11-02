@@ -529,7 +529,7 @@ display:none;
 }
 
 .menusearch-bar {
-    display: inline-block;
+    display: inline;
     margin-bottom: 20px;
     padding: 10px 30px;
 }
@@ -2622,9 +2622,13 @@ section.no-results.not-found {
 .site-branding {
     text-align: center;
 }
-.intro-banner {
-   }
-.intro-banner h2 {
+.intro-banner2 {
+    background: url("images/header-banner.jpg")no-repeat center fixed;
+    background-size: cover;
+    height: 250px;
+    text-align: center;
+}
+.intro-banner2 h2 {
     color: #ffffff;
     margin-top: 115px;
 }
@@ -2642,7 +2646,7 @@ section.no-results.not-found {
     list-style-type: none;
 }
 p.form-submit input[type=submit] {
-    border: 1px solid #343434;
+    // border: 1px solid #343434;
     border-radius: 4px;
     margin: 0 15px;
 }

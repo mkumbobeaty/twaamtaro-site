@@ -23,13 +23,13 @@
 define('DB_NAME', 'wordpress');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'wordpressuser');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'rudia');
+define('DB_PASSWORD', 'wordpress');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1:3306');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -37,6 +37,7 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 define('FS_METHOD', 'direct');
+
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -55,6 +56,7 @@ define('AUTH_SALT',        'l])Y&}U&W{<N2=y9]3&[9wcGYElJBD+9RE(LHpTu];cViG_lW}!S
 define('SECURE_AUTH_SALT', 'D1O9sanV~&`OZw-.:o 0f/:%5faIgsIgsj^aG6T~bZ-1;FbjlM8lxr~<& Qb)>oe');
 define('LOGGED_IN_SALT',   'RfrhIZwmSlhpi-[3- &-Uh$WG-:XGz,I`hri}|H^~~V`gkFYZ>-N/9@{aDb*dp_*');
 define('NONCE_SALT',       'u.pX-7DO(WT0<rZWJc |n;$>BZG:R(,Rh+wu>-~=2Up=<nKq!K~!H~;GtZOdNr+t');
+
 /**#@-*/
 
 /**
