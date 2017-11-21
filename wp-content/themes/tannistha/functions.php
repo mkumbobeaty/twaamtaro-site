@@ -230,46 +230,81 @@
 			wp_enqueue_script( 'comment-reply' );
 		}
 
-		$tannistha_body_background_color = esc_html( get_theme_mod( 'background_color' ), 'tannistha' );
-		$tannistha_header_text_color = esc_html( get_theme_mod( 'header_textcolor' ), 'tannistha' );
-		$tannistha_primary_color = esc_html( get_theme_mod( 'tannistha_primary_color' ), 'tannistha' );
-		$tannistha_secondary_color = esc_html( get_theme_mod( 'tannistha_secondary_color' ), 'tannistha' );
-		$tannistha_hover_color = esc_html( get_theme_mod( 'tannistha_hover_color' ), 'tannistha' );
+		$tannistha_body_background_color = esc_html( get_theme_mod( 'background_color' ) );
+		$tannistha_header_text_color = esc_html( get_theme_mod( 'header_textcolor' ) );
+		$tannistha_primary_color = esc_html( get_theme_mod( 'tannistha_primary_color' ) );
+		$tannistha_secondary_color = esc_html( get_theme_mod( 'tannistha_secondary_color' ) );
+    $tannistha_top_header_bg_color = esc_html( get_theme_mod( 'tannistha_top_header_bg_color' ) ); 
+    $tannistha_top_header_text_color = esc_html( get_theme_mod( 'tannistha_top_header_text_color' ) );
+		$tannistha_hover_color = esc_html( get_theme_mod( 'tannistha_hover_color' ) );
+    $tannistha_banner_grayness = esc_html( get_theme_mod( 'tannistha_banner_grayness' ) );
+    $tannistha_blog_banner_grayness = esc_html( get_theme_mod( 'tannistha_blog_banner_grayness' ) );
 
 		if ( empty( $tannistha_body_background_color ) ) {
 			$tannistha_body_background_color = '#dddddd';
 		}
 		else {
-	  	$tannistha_body_background_color = '#' . esc_html( get_theme_mod( 'background_color' ), 'tannistha' );
+	  	$tannistha_body_background_color = '#' . esc_html( get_theme_mod( 'background_color' ) );
 	  }
 
 		if ( empty( $tannistha_header_text_color ) ) {
 			$tannistha_header_text_color = '#ffffff';
 		}
 		else {
-	  	$tannistha_header_text_color = '#' . esc_html( get_theme_mod( 'header_textcolor' ), 'tannistha' );
+	  	$tannistha_header_text_color = '#' . esc_html( get_theme_mod( 'header_textcolor' ) );
 	  }
 
 	  if ( empty( $tannistha_primary_color ) ) {
 			$tannistha_primary_color = '#10498C';
 		}
 		else {
-	  	$tannistha_primary_color = esc_html( get_theme_mod( 'tannistha_primary_color' ), 'tannistha' );
+	  	$tannistha_primary_color = esc_html( get_theme_mod( 'tannistha_primary_color' ) );
 	  }
 
 	  if ( empty( $tannistha_secondary_color ) ) {
 			$tannistha_secondary_color = '#4b4b4b';
 		}
 		else {
-	  	$tannistha_secondary_color = esc_html( get_theme_mod( 'tannistha_secondary_color' ), 'tannistha' );
+	  	$tannistha_secondary_color = esc_html( get_theme_mod( 'tannistha_secondary_color' ) );
 	  }
+    
+    if ( empty( $tannistha_top_header_bg_color ) ) {
+			$tannistha_top_header_bg_color = '#10498C';
+		}
+		else {
+	  	$tannistha_top_header_bg_color = esc_html( get_theme_mod( 'tannistha_top_header_bg_color' ) );
+	  }
+    
+    if ( empty( $tannistha_top_header_text_color ) ) {
+			$tannistha_top_header_text_color = '#ffffff';
+		}
+		else {
+	  	$tannistha_top_header_text_color = esc_html( get_theme_mod( 'tannistha_top_header_text_color' ) );
+	  }
+    
 
 	  if ( empty( $tannistha_hover_color ) ) {
 			$tannistha_hover_color = '#ff5d5d';
 		}
 		else {
-	  	$tannistha_hover_color = esc_html( get_theme_mod( 'tannistha_hover_color' ), 'tannistha' );
+	  	$tannistha_hover_color = esc_html( get_theme_mod( 'tannistha_hover_color' ) );
 	  }
+    
+    if ( empty( $tannistha_banner_grayness ) ) {
+			$tannistha_banner_grayness = 0.4;
+		}
+		else {
+	  	$tannistha_banner_grayness = ( esc_html( get_theme_mod( 'tannistha_banner_grayness' ) ) - 1 ) * 0.1;
+	  }
+    
+    if ( empty( $tannistha_blog_banner_grayness ) ) {
+			$tannistha_blog_banner_grayness = 0.4;
+		}
+		else {
+	  	$tannistha_blog_banner_grayness = ( esc_html( get_theme_mod( 'tannistha_blog_banner_grayness' ) ) -1 ) * 0.1;
+	  }
+           
+    
 
     $tannistha_custom_css = "
     				body{
@@ -281,12 +316,26 @@
     				.all-banner h4.banner-text{
     					color: {$tannistha_header_text_color};
     				}
+            .top-header-band{
+              background-color: {$tannistha_top_header_bg_color};
+              
+            }
+            .home-banner::after {
+              background: rgba(0, 0, 0, {$tannistha_banner_grayness}) none repeat scroll 0 0;
+            }
+            .all-banner::after {
+              background: rgba(0, 0, 0, {$tannistha_blog_banner_grayness}) none repeat scroll 0 0;
+            }            
+            .top-header-band span {
+              color: {$tannistha_top_header_text_color};
+            }
             h2, 
             h3, 
             h5, 
             h6, 
             a, 
-            cite, 
+            cite,
+            .site-header .left-contact,
             .site-header .logo, 
             .site-header .dc-top-nav li a, 
             .site-header .dc-top-nav li.current-menu-item > li a, 

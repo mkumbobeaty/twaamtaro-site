@@ -5,8 +5,7 @@
       <section class="home-posts">
 			<div class="container">
 			  <div class="row">
-			  <?php if ( $tannistha_post_sidebar == 'left-sidebar' ) { get_sidebar(); } ?>
-				<div class="page-content-location <?php if ( $tannistha_post_sidebar == 'without-sidebar' ) { echo 'col-sm-12'; } else { echo 'col-sm-8 col-md-9'; } ?>">
+				<div class="page-content-location <?php if ( $tannistha_post_sidebar == 'without-sidebar' ) { echo 'col-sm-12'; } else if ( $tannistha_post_sidebar == 'left-sidebar' ) { echo 'col-sm-8 col-md-9 has_left_sidebar'; } else { echo 'col-sm-8 col-md-9'; } ?>">
 
 					<?php if ( have_posts() ) : ?>
 
@@ -45,6 +44,7 @@
 					?>
 
 				</div> 
+				<?php if ( $tannistha_post_sidebar == 'left-sidebar' ) { get_sidebar(); } ?>
 				<?php if ( $tannistha_post_sidebar == 'right-sidebar' ) { get_sidebar(); } ?>
 				<div class="clearfix"></div>
 			  </div>	

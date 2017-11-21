@@ -1,37 +1,41 @@
   </div>
-  <div class="footer-widgets">
-    <div class="container">
-   	  <div class="col-md-3 footer-widgets-1 widget-area">
-   	    <?php if ( is_active_sidebar( 'footer-1' )  ) : ?>
-					<aside id="footer1" class="sidebar widget-area" role="complementary">
-						<?php dynamic_sidebar( 'footer-1' ); ?>
-					</aside><!-- .sidebar .widget-area -->
-				<?php endif; ?>
-   	  </div>	
-   	  <div class="col-md-3 footer-widgets-2 widget-area">
-   	    <?php if ( is_active_sidebar( 'footer-2' )  ) : ?>
-					<aside id="footer2" class="sidebar widget-area" role="complementary">
-						<?php dynamic_sidebar( 'footer-2' ); ?>
-					</aside><!-- .sidebar .widget-area -->
-				<?php endif; ?>
-   	  </div>
-   	  <div class="col-md-3 footer-widgets-3 widget-area">
-   	    <?php if ( is_active_sidebar( 'footer-3' )  ) : ?>
-					<aside id="footer3" class="sidebar widget-area" role="complementary">
-						<?php dynamic_sidebar( 'footer-3' ); ?>
-					</aside><!-- .sidebar .widget-area -->
-				<?php endif; ?>
-   	  </div>
-   	  <div class="col-md-3 footer-widgets-4 widget-area">
-        <?php if ( is_active_sidebar( 'footer-4' )  ) : ?>
-					<aside id="footer3" class="sidebar widget-area" role="complementary">
-						<?php dynamic_sidebar( 'footer-4' ); ?>
-					</aside><!-- .sidebar .widget-area -->
-				<?php endif; ?>   	                
-   	  </div>                               
-   </div>
- </div>
-
+  
+  <?php if( is_active_sidebar( 'footer-1' ) || is_active_sidebar( 'footer-2' ) || is_active_sidebar( 'footer-3' ) || is_active_sidebar( 'footer-4' )  ) { ?>
+    <div class="footer-widgets">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 footer-widgets-1 widget-area">
+            <?php if ( is_active_sidebar( 'footer-1' )  ) : ?>
+              <aside id="footer1" class="sidebar widget-area" role="complementary">
+                <?php dynamic_sidebar( 'footer-1' ); ?>
+              </aside><!-- .sidebar .widget-area -->
+            <?php endif; ?>
+          </div>	
+          <div class="col-md-3 footer-widgets-2 widget-area">
+            <?php if ( is_active_sidebar( 'footer-2' )  ) : ?>
+              <aside id="footer2" class="sidebar widget-area" role="complementary">
+                <?php dynamic_sidebar( 'footer-2' ); ?>
+              </aside><!-- .sidebar .widget-area -->
+            <?php endif; ?>
+          </div>
+          <div class="col-md-3 footer-widgets-3 widget-area">
+            <?php if ( is_active_sidebar( 'footer-3' )  ) : ?>
+              <aside id="footer3" class="sidebar widget-area" role="complementary">
+                <?php dynamic_sidebar( 'footer-3' ); ?>
+              </aside><!-- .sidebar .widget-area -->
+            <?php endif; ?>
+          </div>
+          <div class="col-md-3 footer-widgets-4 widget-area">
+            <?php if ( is_active_sidebar( 'footer-4' )  ) : ?>
+              <aside id="footer3" class="sidebar widget-area" role="complementary">
+                <?php dynamic_sidebar( 'footer-4' ); ?>
+              </aside><!-- .sidebar .widget-area -->
+            <?php endif; ?>   	                
+          </div>
+        </div>
+     </div>
+    </div>
+  <?php } ?>
  <footer class="site-footer" itemtype="http://schema.org/WPFooter" itemscope="">
  	<div class="container">
 		<?php

@@ -9,6 +9,7 @@
 	define('WL_TEMPLATE_DIR_CORE' , WL_TEMPLATE_DIR . '/core');
 	require( WL_TEMPLATE_DIR_CORE . '/menu/default_menu_walker.php' );
 	require( WL_TEMPLATE_DIR_CORE . '/menu/weblizar_nav_walker.php' );
+	
 	require( WL_TEMPLATE_DIR_CORE . '/scripts/css_js.php' ); //Enquiring Resources here	
 	require( WL_TEMPLATE_DIR_CORE . '/comment-function.php' );	
 	require(dirname(__FILE__).'/customizer.php');
@@ -36,6 +37,7 @@
 			'custom_css'=>'',
 			'excerpt_blog'=>'55',
 			'home_reorder'=>'',
+			'upload_image_favicon'=>'',
 
 			'slider_image_speed' => '',
 			'slide_image_1' => $ImageUrl,
@@ -194,7 +196,8 @@ add_theme_support( 'custom-header', $args );
 	'admin-preview-callback' => '',
 );
 add_theme_support( 'custom-header', $defaults );
-		
+
+add_theme_support( 'customize-selective-refresh-widgets' );
 		
 		/*
 		 * This theme styles the visual editor to resemble the theme style,
@@ -489,11 +492,12 @@ function enigma_plugin_recommend(){
 	);
     tgmpa( $plugins );
 }
+if (get_template_directory() == get_stylesheet_directory()) {
 add_action( 'admin_notices', 'enigma_rating' );
 function enigma_rating() {
     ?>
     <div class="notice error my-acf-notice is-dismissible notice-box" >
-        <p><?php _e( 'Thank You for using Weblizar theme, Please give your rating on Enigma theme. Your rating help us to improve our theme' ); ?></p>
+        <p><?php _e( 'Thank You for using Enigma theme, Please give your reviews and ratings on Enigma theme. Your ratings will help us to improve our themes.','enigma' ); ?></p>
 		<p style="font-size:17px;"> 
 			<a style="color: #fff;background: #ec635b;padding: 3px 7px 4px 6px;border-radius: 5px;" href="<?php echo esc_url('https://wordpress.org/support/theme/enigma/reviews/?filter=5');  ?>" target="_blank"><?php _e('Rate the theme','enigma') ?></a>
 		</p>
@@ -505,4 +509,22 @@ function enqueue_custom_admin_style() {
         wp_enqueue_style( 'custom_admin_css' );
 }
 add_action( 'admin_enqueue_scripts', 'enqueue_custom_admin_style' );
+} else {
+	add_action( 'admin_notices', 'greenigma_rating' );
+function greenigma_rating() {
+    ?>
+    <div class="error my-acf-notice is-dismissible notice-box1" >
+        <p><?php _e( 'Thank You for using Greenigma theme, Please give your reviews and ratings on Greenigma theme. Your ratings will help us to improve our themes.','Greenigma' ); ?></p>
+		<p style="font-size:17px;"> 
+			<a style="color: #fff;background: #ec635b;padding: 3px 7px 4px 6px;border-radius: 5px;" href="<?php echo esc_url('https://wordpress.org/support/theme/greenigma/reviews/#new-post');  ?>" target="_blank"><?php _e('Rate the theme','enigma') ?></a>
+		</p>
+    </div>
+    <?php
+}
+function enqueue_custom_admin_style() {
+        wp_register_style( 'custom_admin_css', get_template_directory_uri() . '/core/admin/admin-rating.css');
+        wp_enqueue_style( 'custom_admin_css' );
+}
+add_action( 'admin_enqueue_scripts', 'enqueue_custom_admin_style' );
+}
 ?>

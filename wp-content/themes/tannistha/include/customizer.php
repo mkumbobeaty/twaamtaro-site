@@ -43,6 +43,32 @@ function tannistha_register_theme_customizer( $wp_customize ) {
     //return input if valid or return default option
     return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
   }
+  
+  //url sanitization function
+  function tannistha_sanitize_url( $url ) {
+    return esc_url_raw( $url );
+  }
+  
+  function tannistha_sanitize_number_range( $number, $setting ) {
+
+    // Ensure input is an absolute integer.
+    $number = absint( $number );
+
+    // Get the input attributes associated with the setting.
+    $atts = $setting->manager->get_control( $setting->id )->input_attrs;
+
+    // Get minimum number in the range.
+    $min = ( isset( $atts['min'] ) ? $atts['min'] : $number );
+
+    // Get maximum number in the range.
+    $max = ( isset( $atts['max'] ) ? $atts['max'] : $number );
+
+    // Get step.
+    $step = ( isset( $atts['step'] ) ? $atts['step'] : 1 );
+
+    // If the number is within the valid range, return it; otherwise, return the default
+    return ( $min <= $number && $number <= $max && is_int( $number / $step ) ? $number : $setting->default );
+  }
 
 	$wp_customize->add_setting(
 		'tannistha_primary_color',
@@ -100,6 +126,72 @@ function tannistha_register_theme_customizer( $wp_customize ) {
 			)
 		)
 	);
+  
+  
+  /**
+   	 * Adds the setting with the unique id of 'tannistha_top_header_bg_color'. 
+   	 *
+   	 * Also defines the transport method to 'postMessage' so that 
+   	 * we can use JavaScript to dynamically change the color without 
+   	 * using the default method of 'refresh.'
+   	 */
+	$wp_customize->add_setting(
+		'tannistha_top_header_bg_color',
+		array(
+			'default'     => '#10498C',
+			'sanitize_callback' => 'sanitize_hex_color',
+			
+		)
+  );
+	/**
+   	 * Introduces a new color control to the Theme Customizer in the
+	 * 'Colors' section. This is the actual control that will allow
+	 * a user to pick a color.
+	 */
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'top_header_bg_color',
+			array(
+			    'label'      => __( 'Top Header Background Color', 'tannistha' ),
+			    'section'    => 'colors',
+			    'settings'   => 'tannistha_top_header_bg_color'
+			)
+		)
+	);
+  
+  
+  /**
+   	 * Adds the setting with the unique id of 'tannistha_top_header_text_color'. 
+   	 *
+   	 * Also defines the transport method to 'postMessage' so that 
+   	 * we can use JavaScript to dynamically change the color without 
+   	 * using the default method of 'refresh.'
+   	 */
+	$wp_customize->add_setting(
+		'tannistha_top_header_text_color',
+		array(
+			'default'     => '#ffffff',
+			'sanitize_callback' => 'sanitize_hex_color',
+			
+		)
+  );
+	/**
+   	 * Introduces a new color control to the Theme Customizer in the
+	 * 'Colors' section. This is the actual control that will allow
+	 * a user to pick a color.
+	 */
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'top_header_text_color',
+			array(
+			    'label'      => __( 'Top Header Text Color', 'tannistha' ),
+			    'section'    => 'colors',
+			    'settings'   => 'tannistha_top_header_text_color'
+			)
+		)
+	);
 
 	/**
 	 * Hover Color
@@ -128,12 +220,224 @@ function tannistha_register_theme_customizer( $wp_customize ) {
 			)
 		)
 	);
-
+  /*Top Header Band Text Customizer Code*/
+  
+  $wp_customize->add_section( 
+		'top_header', 
+		array(
+			'capability'    => 'edit_theme_options',
+			'title'			=> __('Top Header Contact Section', 'tannistha'),
+		) 
+	);
+	/* Top Header Show or Hide */		
+	$wp_customize->add_setting( 
+		'hide_show_top_header' , 
+			array(
+			'default' => __( 'off', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_select'
+		) 
+	);
+  
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+			$wp_customize,
+      'hide_show_top_header' , 
+      array(
+        'label'          => __( 'Hide / Show Top Header Contact Section', 'tannistha' ),
+        'section'        => 'top_header',
+        'settings'       => 'hide_show_top_header',
+        'type'           => 'radio',
+        'choices'        => 
+          array(
+            'on' => __( 'Show', 'tannistha' ),
+            'off'=> __( 'Hide', 'tannistha' )
+          )  
+      )
+    )
+	);
+  
+  /* Top Header Phone Number */
+  $wp_customize->add_setting( 
+		'top_header_phone' , 
+			array(
+			'default' => __( '', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field'
+		) 
+	);
+  
+  $wp_customize->add_control('top_header_phone', array(
+	 'label'   => __( 'Header Phone No. Field', 'tannistha' ),
+	 'sanitize_callback' => 'sanitize_text_field',
+	 'section' => 'top_header',
+	 'type'    => 'text',
+	));
+  
+  /* Top Header Address Field */
+  $wp_customize->add_setting( 
+		'top_header_address' , 
+			array(
+			'default' => __( '', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field'
+		) 
+	);
+  
+  $wp_customize->add_control('top_header_address', array(
+	 'label'   => __( 'Header Address Field', 'tannistha' ),
+	 'sanitize_callback' => 'sanitize_text_field',
+	 'section' => 'top_header',
+	 'type'    => 'text',
+	));
+  
+  /* Top Header Facebook */
+  $wp_customize->add_setting ( 
+		'top_header_fb_link' , 
+			array(
+			'default' => __( '', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_url'
+		) 
+	);
+  
+  $wp_customize->add_control('top_header_fb_link', array(
+	 'label'   => __( 'Header Facebook Link', 'tannistha' ),
+	 'sanitize_callback' => 'tannistha_sanitize_url',
+	 'section' => 'top_header',
+	 'type'    => 'text',
+	));
+  
+  /* Top Header Twitter */
+  $wp_customize->add_setting ( 
+		'top_header_tw_link' , 
+			array(
+			'default' => __( '', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_url'
+		) 
+	);
+  
+  $wp_customize->add_control('top_header_tw_link', array(
+	 'label'   => __( 'Header Twitter Link', 'tannistha' ),
+	 'sanitize_callback' => 'tannistha_sanitize_url',
+	 'section' => 'top_header',
+	 'type'    => 'text',
+	));
+  
+  /* Top Header G PLus */
+  $wp_customize->add_setting ( 
+		'top_header_gp_link' , 
+			array(
+			'default' => __( '', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_url'
+		) 
+	);
+  
+  $wp_customize->add_control('top_header_gp_link', array(
+	 'label'   => __( 'Header Google Plus Link', 'tannistha' ),
+	 'sanitize_callback' => 'tannistha_sanitize_url',
+	 'section' => 'top_header',
+	 'type'    => 'text',
+	));
+  
+  /* Top Header Linkedin */
+  $wp_customize->add_setting ( 
+		'top_header_in_link' , 
+			array(
+			'default' => __( '', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_url'
+		) 
+	);
+  
+  $wp_customize->add_control('top_header_in_link', array(
+	 'label'   => __( 'Header Linkedin Link', 'tannistha' ),
+	 'sanitize_callback' => 'tannistha_sanitize_url',
+	 'section' => 'top_header',
+	 'type'    => 'text',
+	));
+  
+  /* Top Header Instagram */
+  $wp_customize->add_setting ( 
+		'top_header_ing_link' , 
+			array(
+			'default' => __( '', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_url'
+		) 
+	);
+  
+  $wp_customize->add_control('top_header_ing_link', array(
+	 'label'   => __( 'Header Instagram Link', 'tannistha' ),
+	 'sanitize_callback' => 'tannistha_sanitize_url',
+	 'section' => 'top_header',
+	 'type'    => 'text',
+	));
+  
 	/*Header Text Customizer Code*/
 	//adding section in wordpress customizer   
 	$wp_customize->add_section('tannistha_header_settings_section', array(
-	  'title'          => __( 'Header Section', 'tannistha' )
+	  'title'          => __( 'Header Section( Pages )', 'tannistha' )
 	));
+  
+  /* Top Header Banner Hide/Shoe Home Page */		
+	$wp_customize->add_setting( 
+		'hide_show_home_banner' , 
+			array(
+			'default' => __( 'on', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_select'
+		) 
+	);
+  
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+			$wp_customize,
+      'hide_show_home_banner' , 
+      array(
+        'label'          => __( 'Show / Hide Home Page Banner', 'tannistha' ),
+        'section'        => 'tannistha_header_settings_section',
+        'settings'       => 'hide_show_home_banner',
+        'type'           => 'radio',
+        'choices'        => 
+          array(
+            'on' => __( 'Show', 'tannistha' ),
+            'off'=> __( 'Hide', 'tannistha' )
+          )  
+      )
+    )
+	);
+  
+  /* Top Header Banner Hide/Shoe Other Page */		
+	$wp_customize->add_setting( 
+		'hide_show_other_pages_banner' , 
+			array(
+			'default' => __( 'on', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_select'
+		) 
+	);
+  
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+			$wp_customize,
+      'hide_show_other_pages_banner' , 
+      array(
+        'label'          => __( 'Show / Hide Other Page Banner', 'tannistha' ),
+        'section'        => 'tannistha_header_settings_section',
+        'settings'       => 'hide_show_other_pages_banner',
+        'type'           => 'radio',
+        'choices'        => 
+          array(
+            'on' => __( 'Show', 'tannistha' ),
+            'off'=> __( 'Hide', 'tannistha' )
+          )  
+      )
+    )
+	);
+  
 	//banner heading text
 	$wp_customize->add_setting('tannistha_banner_heading', array(
 	 'default'        => __( 'Enter banner heading text here', 'tannistha' ),
@@ -158,6 +462,27 @@ function tannistha_register_theme_customizer( $wp_customize ) {
 	 'section' => 'tannistha_header_settings_section',
 	 'type'    => 'textarea',
 	));
+  
+  $wp_customize->add_setting( 'tannistha_banner_grayness', array(
+    
+    'capability' => 'edit_theme_options',
+    
+    'sanitize_callback' => 'tannistha_sanitize_number_range',
+  ) );
+
+  $wp_customize->add_control( 'tannistha_banner_grayness', array(
+      'type' => 'range',
+      'priority' => 10,
+      'section' => 'tannistha_header_settings_section',
+      'label' => __( 'Choose Grayness( Overlay ) of Header Image', 'tannistha' ),
+      'description' => 'Lowest 0 for least grayness and 1 for highest',
+      'input_attrs' => array(
+          'min' => 1,
+          'max' => 11,
+          'step' => 1,
+          'style' => 'color: #0a0',
+      ),
+  ) );
 
 /*Footer Customizer Code*/
 	//adding section in wordpress customizer   
@@ -182,6 +507,35 @@ function tannistha_register_theme_customizer( $wp_customize ) {
 	$wp_customize->add_section('tannistha_blog_settings_section', array(
 	  'title'          => __( 'Single Blog Section', 'tannistha' )
 	));
+  
+  /* Top Header Banner Hide/Show Other Page */		
+	$wp_customize->add_setting( 
+		'hide_show_blog_banner' , 
+			array(
+			'default' => __( 'on', 'tannistha' ),
+			'capability'     => 'edit_theme_options',
+			'sanitize_callback' => 'tannistha_sanitize_select'
+		) 
+	);
+  
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+			$wp_customize,
+      'hide_show_blog_banner' , 
+      array(
+        'label'          => __( 'Show / Hide Other Page Banner', 'tannistha' ),
+        'section'        => 'tannistha_blog_settings_section',
+        'settings'       => 'hide_show_blog_banner',
+        'type'           => 'radio',
+        'choices'        => 
+          array(
+            'on' => __( 'Show', 'tannistha' ),
+            'off'=> __( 'Hide', 'tannistha' )
+          )  
+      )
+    )
+	);
+  
 	//adding setting for blog banner heading
 	$wp_customize->add_setting('tannistha_blog_banner_heading', array(
 	 'default'        => __( 'Enter Blog Banner Heading Here', 'tannistha' ),
@@ -218,6 +572,27 @@ function tannistha_register_theme_customizer( $wp_customize ) {
 	 'section'    => 'tannistha_blog_settings_section',
 	 'settings'   => 'tannistha_blog_banner',
 	)));
+  
+  $wp_customize->add_setting( 'tannistha_blog_banner_grayness', array(
+    
+    'capability' => 'edit_theme_options',
+    
+    'sanitize_callback' => 'tannistha_sanitize_number_range',
+  ) );
+
+  $wp_customize->add_control( 'tannistha_blog_banner_grayness', array(
+      'type' => 'range',
+      'priority' => 10,
+      'section' => 'tannistha_blog_settings_section',
+      'label' => __( 'Choose Grayness( Overlay ) of Single Blog Header Image', 'tannistha' ),
+      'description' => 'Lowest 0 for least grayness and 1 for highest',
+      'input_attrs' => array(
+          'min' => 1,
+          'max' => 11,
+          'step' => 1,
+          'style' => 'color: #0a0',
+      ),
+  ) );
 
 /*Page Layout Customizer Code*/
 	//adding section in wordpress customizer   

@@ -3,7 +3,7 @@
 	$sidebar_pos = '';
 	$sidebar_pos_page = '';
 	if ( $tannistha_post_sidebar == 'left-sidebar' ) {
-		$sidebar_pos = 'pull-left';
+		$sidebar_pos = 'pulling-left';
 	}
 	if ( $tannistha_post_sidebar == 'right-sidebar' ) {
 		$sidebar_pos = '';
@@ -13,7 +13,7 @@
 	}
 
 	if ( $tannistha_page_sidebar == 'left-sidebar' ) {
-		$sidebar_pos_page = 'pull-left';
+		$sidebar_pos_page = 'pulling-left';
 	}
 	if ( $tannistha_page_sidebar == 'right-sidebar' ) {
 		$sidebar_pos_page = '';

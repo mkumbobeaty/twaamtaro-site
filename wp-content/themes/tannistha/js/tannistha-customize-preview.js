@@ -9,12 +9,27 @@
 			$( '.home-banner h1.banner-text, .home-banner h4.banner-text, .all-banner h1.banner-text, .all-banner h4.banner-text' ).css( 'color', to );
 		});
 	});
+  
+  wp.customize( 'hide_show_top_header', function( value ) {
+		value.bind( function( to ) {
+      if( 'off' === to )
+        $( '.top-header-band' ).css( 'display', 'none' );
+      else
+        $( '.top-header-band' ).css( 'display', 'block' );
+		});
+	});
+  
+  wp.customize( 'tannistha_top_header_bg_color', function( value ) {
+		value.bind( function( to ) {
+			$( '.top-header-band' ).css( 'background', to );
+		});
+	});
 
 	wp.customize( 'tannistha_primary_color', function( value ) {
 		value.bind( function( to ) {
 			$('h1,h4').not(".banner-text").css( 'color', to );
 
-			$( 'h2, h3, h5, h6, a, cite, .site-header .logo, .site-header .dc-top-nav li a, .site-header .dc-top-nav li.current-menu-item a, .site-header .dc-top-nav li.current-menu-item li a, .entry .entry-header .entry-title a, .entry .entry-meta span a, .widget ul li a, .navigation .nav-links .nav-previous a, .navigation .nav-links .nav-next a, .entry-comments .comment-list .comment-author-link a, .widget ul ul li a, a.entry-author-link span, .entry-meta span, .widget h3, .site-footer ul.foot-nav li, .site-footer ul.foot-nav li a, .theme_default_menu ul li a, .entry-comments .comment-list .comment-author-link, .entry-comments .comment-list .comment-meta' ).css( 'color', to );
+			$( 'h2, h3, h5, h6, a, cite, .site-header .left-contact, .site-header .logo, .site-header .dc-top-nav li a, .site-header .dc-top-nav li.current-menu-item a, .site-header .dc-top-nav li.current-menu-item li a, .entry .entry-header .entry-title a, .entry .entry-meta span a, .widget ul li a, .navigation .nav-links .nav-previous a, .navigation .nav-links .nav-next a, .entry-comments .comment-list .comment-author-link a, .widget ul ul li a, a.entry-author-link span, .entry-meta span, .widget h3, .site-footer ul.foot-nav li, .site-footer ul.foot-nav li a, .theme_default_menu ul li a, .entry-comments .comment-list .comment-author-link, .entry-comments .comment-list .comment-meta' ).css( 'color', to );
 
 			$( '.search-form input[type="submit"], .comment-respond .comment-form input[type="submit"], .entry .entry-content .button, #back-to-top, input[type="submit"], .navigation .nav-links a.page-numbers, .navigation .nav-links span.dots' ).css( 'background-color', to );
 			$( '.entry .entry-content .button, #back-to-top, .navigation .nav-links a.page-numbers, .navigation .nav-links span.dots' ).css( 'color', '#fff' );
